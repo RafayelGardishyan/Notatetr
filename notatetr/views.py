@@ -69,3 +69,27 @@ def add(request):
         n.user = u
         n.save()
         return redirect('/')
+    
+def note(request, id):
+    n = models.Note.objects.get(slug=id)
+    return render(request, 'notebook/note_page.html', {'note': n})
+
+def note_edit(request, id):
+    if not request.session["notatetr_logged_in"]:
+        return redirect('/login')
+    if request.method != "POST":
+        n = models.Note.objects.get(slug=id)
+        return render(request, 'notebook/add.html', {'note': n.content})
+    else:
+        n = models.Note.objects.get(slug=id)
+        n.content = request.POST['content']
+        n.save()
+        return redirect('/')
+
+def note_delete(request, id):
+    if not request.session["notatetr_logged_in"]:
+        return redirect('/login')
+    n = models.Note.objects.get(slug=id)
+    n.delete()
+    return redirect('/')
+    

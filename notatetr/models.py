@@ -16,4 +16,4 @@ class User(models.Model):
 class Note(models.Model):
     content = models.TextField(max_length=1000)
     user = models.ForeignKey(User, on_delete=models.CASCADE,)
-    slug = models.CharField(max_length=100, default=str(random.randint(100000, 999999999999)))
+    slug = models.CharField(max_length=100, default=generate_id)

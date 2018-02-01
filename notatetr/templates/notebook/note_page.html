@@ -9,10 +9,13 @@
 </head>
 <body>
 <div class="container">
-  <form action="" method="post">{% csrf_token %}
-    <button type="submit" class="btn btn-primary" style="width:100%; margin-top: 15px;" onclick="location.href='/add';">{% if note %}Ուղղել{% else %}Ավելացնել{% endif %}</button>
-    <textarea class="form-control" style="min-width: 100%; margin-top:5px; min-height: 500px;" name="content">{{ note }}</textarea>
-  </form>
+  <div class="jumbotron">
+    <h1>{{ note.slug }} | {{ note.user.email }}</h1>
+    <button type="button" class="btn btn-primary" onclick="location.href='/';">Տուն</button>
+  </div>
+  <div class="card">
+  <div class="card-body">{{ note.content }}</div>
+</div>
 </div>
 </body>
 </html>

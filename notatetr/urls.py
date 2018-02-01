@@ -8,5 +8,7 @@ urlpatterns = [
     path('<int:id>/notes', views.logged_user_home),
     path('logout', views.logout),
     path('add', views.add),
-#     path('note/<int:id>', views.note)
+    path('note/<int:id>', views.note),
+    path('note/edit/<int:id>', views.note_edit),
+    path('note/delete/<int:id>', views.note_delete),
 ]

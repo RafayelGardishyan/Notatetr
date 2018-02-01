@@ -17,9 +17,18 @@
   {% if notes %}
   <table class="table table-striped">
     {% for note in notes %}
-    <tr onclick="location.href='/note/{{ note.slug }}'">
+    <tr>
       <th>
         {{ note.content|truncatewords:10 }}
+      </th>
+      <th>
+        <button type="button" class="btn btn-primary" onclick="location.href='/note/{{ note.slug }}';">Դիտել</button>
+      </th>
+      <th>
+        <button type="button" class="btn btn-warning" onclick="location.href='/note/edit/{{ note.slug }}';">Ուղղել</button>
+      </th>
+      <th>
+        <button type="button" class="btn btn-danger" onclick="location.href='/note/delete/{{ note.slug }}';">Ջնջել</button>
       </th>
     </tr>
     {% endfor %}
