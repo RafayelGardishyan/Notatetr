@@ -106,7 +106,7 @@ function validatePassword(){
 var pass2=document.getElementById("confirm_password").value;
 var pass1=document.getElementById("password").value;
 if(pass1!=pass2){
-	document.getElementById("confirm_password").setCustomValidity("Passwords Don't Match");
+	document.getElementById("confirm_password").setCustomValidity("Գաղտնաբառերը չեն համընկնում");
 }else{
 	document.getElementById("confirm_password").setCustomValidity('');
 //empty string means no validation error

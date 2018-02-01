@@ -5,23 +5,29 @@ from django.http import HttpResponse
 
 # Create your tests here.
 def login(request):
-    if request.session["notatetr_logged_in"]:
-        return redirect('/')
+    try:
+        if request.session["notatetr_logged_in"]:
+            return redirect('/')
+    except Exception as e:
+        return render(request, "notebook/login-register.html", {})
     if request.method == "POST":
-      try:
-        user = models.User.objects.get(email=request.POST['email'], password=request.POST['password'])
-        request.session["notatetr_user_id"] = user.slug
-        request.session["notatetr_logged_in"] = True
-        return redirect("/")
-      except Exception as e:
-        return render(request, "notebook/login-register.html", {'error': 'Սխալ Էլ․ փոստ կամ գաղտնաբառ'})
+        try:
+            user = models.User.objects.get(email=request.POST['email'], password=request.POST['password'])
+            request.session["notatetr_user_id"] = user.slug
+            request.session["notatetr_logged_in"] = True
+            return redirect("/")
+        except Exception as e:
+            return render(request, "notebook/login-register.html", {'error': 'Սխալ Էլ․ փոստ կամ գաղտնաբառ'})
     else:
       return render(request, "notebook/login-register.html", {})
 
 def index(request):
-    if request.session["notatetr_logged_in"]:
-        return redirect('/{}/notes'.format(request.session["notatetr_user_id"]))
-    else:
+    try:
+        if request.session["notatetr_logged_in"]:
+            return redirect('/{}/notes'.format(request.session["notatetr_user_id"]))
+        else:
+            return render(request, 'notebook/index.html')
+    except:
         return render(request, 'notebook/index.html')
 
 def register(request):
