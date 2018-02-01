@@ -59,24 +59,27 @@ body {font-family: Arial;}
 <body>
 <div class="container">
 <div class="tab">
-  <button class="tablinks" onclick="openCity(event, 'Login')" id="login">Login</button>
-  <button class="tablinks" onclick="openCity(event, 'Register')" id="register">Register</button>
+  <button class="tablinks" onclick="openCity(event, 'Login')" id="login">Մտնել</button>
+  <button class="tablinks" onclick="openCity(event, 'Register')" id="register">Գրանցվել</button>
 </div>
 
 <div id="Login" class="tabcontent">
-  <form action="/login" method="post" class="form-horizontal">
-    <input type="email" name="email" placeholder="Email" class="form-control form-control-lg"><br>
-    <input type="password" name="password" placeholder="Password" class="form-control form-control-lg"><br>
-    <input type="submit" value="Login" class="btn btn-primary submitbutton btn-lg">
+  {% if error %}
+  <h4 style="color:red;">{{ error }}</h4>
+  {% endif %}
+  <form action="/login" method="post" class="form-horizontal">{% csrf_token %}
+    <input type="email" name="email" placeholder="Էլ․ փոստ" class="form-control form-control-lg"><br>
+    <input type="password" name="password" placeholder="Գաղտնաբառ" class="form-control form-control-lg"><br>
+    <input type="submit" value="Մտնել" class="btn btn-primary submitbutton btn-lg">
   </form>
 </div>
 
 <div id="Register" class="tabcontent">
-  <form action="/register" method="post" class="form-horizontal">
-    <input type="email" name="email" placeholder="Email" class="form-control form-control-lg" required><br>
-    <input type="password" name="password" placeholder="Password" class="form-control form-control-lg" id="password" required><br>
-    <input type="password" name="password-confirm" placeholder="Confirm password" class="form-control form-control-lg" id="confirm_password" oninput="check(this)" required><br>
-    <input type="submit" value="Register" class="btn btn-primary submitbutton btn-lg">
+  <form action="/register" method="post" class="form-horizontal">{% csrf_token %}
+    <input type="email" name="email" placeholder="Էլ․ փոստ" class="form-control form-control-lg" required><br>
+    <input type="password" name="password" placeholder="Գաղտնաբառ" class="form-control form-control-lg" id="password" required><br>
+    <input type="password" name="password-confirm" placeholder="Հաստատել գաղտնաբառը" class="form-control form-control-lg" id="confirm_password" oninput="check(this)" required><br>
+    <input type="submit" value="Գրանցվել" class="btn btn-primary submitbutton btn-lg">
   </form>
 </div>
 
@@ -94,7 +97,7 @@ function openCity(evt, cityName) {
     document.getElementById(cityName).style.display = "block";
     evt.currentTarget.className += " active";
 }
-  
+
 window.onload = function () {
 	document.getElementById("password").onchange = validatePassword;
 	document.getElementById("confirm_password").onchange = validatePassword;
@@ -105,13 +108,13 @@ var pass1=document.getElementById("password").value;
 if(pass1!=pass2){
 	document.getElementById("confirm_password").setCustomValidity("Passwords Don't Match");
 }else{
-	document.getElementById("confirm_password").setCustomValidity('');	 
+	document.getElementById("confirm_password").setCustomValidity('');
 //empty string means no validation error
 }
 }
-  
+
 openCity('login', 'Login')
 </script>
 </div>
 </body>
-</html> 
+</html>

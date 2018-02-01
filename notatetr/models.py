@@ -9,6 +9,11 @@ class User(models.Model):
   email = models.EmailField(max_length=254)
   password = models.CharField(max_length=50)
   slug = models.CharField(max_length=10, default=generate_id)
-  
+
   def __str__(self):
-      return self.email
+      return self.slug
+
+class Note(models.Model):
+    content = models.TextField(max_length=1000)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,)
+    slug = models.CharField(max_length=100, default=str(random.randint(100000, 999999999999)))

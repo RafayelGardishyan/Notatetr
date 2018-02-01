@@ -25,7 +25,7 @@ SECRET_KEY = 'ln7e(_4%$_f+gx^z$ozr8#lmrw49&c)493q)jbaaj)j0ktwq#i'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['django-rgardishyan422461.codeanyapp.com']
+ALLOWED_HOSTS = ['localhost','django-rgardishyan422461.codeanyapp.com']
 
 
 # Application definition
@@ -40,14 +40,14 @@ INSTALLED_APPS = [
     'notatetr',
 ]
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
 ]
 
 ROOT_URLCONF = 'projectname.urls'

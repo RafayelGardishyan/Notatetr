@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.css">
+  <title>Նոթատետր</title>
+</head>
+<body>
+<div class="container">
+  <form action="/add" method="post">{% csrf_token %}
+    <button type="submit" class="btn btn-primary" style="width:100%; margin-top: 15px;" onclick="location.href='/add';">Ավելացնել</button>
+    <textarea class="form-control" style="min-width: 100%; margin-top:5px;" name="content"></textarea>
+  </form>
+</div>
+</body>
+</html>
