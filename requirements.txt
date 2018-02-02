@@ -1,16 +1,5 @@
 dj-database-url==0.4.2
-Django==2.0.1
+Django==2.0.2
 django-rest-framework==0.1.0
 djangorestframework==3.7.7
-docutils==0.14
-flake8==3.5.0
-idna==2.6
-multidict==3.3.2
-pew==1.1.2
-pipenv==9.0.1
 pytz==2017.3
-requests==2.18.4
-urllib3==1.22
-virtualenv==15.1.0
-virtualenv-clone==0.2.6
-websockets==3.4
