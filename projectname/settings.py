@@ -25,7 +25,7 @@ SECRET_KEY = 'ln7e(_4%$_f+gx^z$ozr8#lmrw49&c)493q)jbaaj)j0ktwq#i'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost','django-rgardishyan422461.codeanyapp.com']
+ALLOWED_HOSTS = ['notatetr.herokuapp.com','localhost','django-rgardishyan422461.codeanyapp.com']
 
 
 # Application definition
