@@ -5,11 +5,6 @@ from django.http import HttpResponse
 
 # Create your tests here.
 def login(request):
-    try:
-        if request.session["notatetr_logged_in"]:
-            return redirect('/')
-    except Exception as e:
-        return render(request, "notebook/login-register.html", {})
     if request.method == "POST":
         try:
             user = models.User.objects.get(email=request.POST['email'], password=request.POST['password'])
@@ -17,9 +12,10 @@ def login(request):
             request.session["notatetr_logged_in"] = True
             return redirect("/")
         except Exception as e:
-            return render(request, "notebook/login-register.html", {'error': 'Սխալ Էլ․ փոստ կամ գաղտնաբառ'})
+            print(e)
+            return render(request, "notebook/login-register.html", {'tab' : 'Login', 'error': 'Սխալ Էլ․ փոստ կամ գաղտնաբառ'})
     else:
-      return render(request, "notebook/login-register.html", {})
+      return render(request, "notebook/login-register.html", {'tab' : 'Login'})
 
 def index(request):
     try:
@@ -41,9 +37,9 @@ def register(request):
             request.session["notatetr_logged_in"] = True
             return redirect('/')
         except:
-            return HttpResponse('Error')
+            return render(request, 'notebook/login-register.html', {'tab': 'Register', 'regerror': 'Անհնար է գրանցվել այս Էլ․ փոստով'})
     else:
-        return redirect('/login')
+        return render(request, "notebook/login-register.html", {'tab' : 'Register'})
 
 def logged_user_home(request, id):
     if not request.session["notatetr_logged_in"]:
@@ -63,12 +59,15 @@ def add(request):
     if request.method != 'POST':
         return render(request, 'notebook/add.html')
     else:
-        u = models.User.objects.get(slug=request.session['notatetr_user_id'])
-        n = models.Note()
-        n.content = request.POST['content']
-        n.user = u
-        n.save()
-        return redirect('/')
+        if len(request.POST['content']) > 0:
+            u = models.User.objects.get(slug=request.session['notatetr_user_id'])
+            n = models.Note()
+            n.content = request.POST['content']
+            n.user = u
+            n.save()
+            return redirect('/')
+        else:
+          return redirect('/')
     
 def note(request, id):
     n = models.Note.objects.get(slug=id)
