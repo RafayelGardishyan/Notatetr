@@ -9,7 +9,6 @@ multidict==3.3.2
 pew==1.1.2
 pipenv==9.0.1
 pytz==2017.3
-pywin32==222
 requests==2.18.4
 urllib3==1.22
 virtualenv==15.1.0
