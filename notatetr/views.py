@@ -37,7 +37,7 @@ def register(request):
             request.session["notatetr_logged_in"] = True
             return redirect('/')
         except Exception as e:
-	    print(e)
+            print(e)
             return render(request, 'notebook/login-register.html', {'tab': 'Register', 'regerror': 'Անհնար է գրանցվել այս Էլ․ փոստով'})
     else:
         return render(request, "notebook/login-register.html", {'tab' : 'Register'})
