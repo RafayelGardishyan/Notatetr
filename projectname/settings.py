@@ -62,7 +62,7 @@ REST_FRAMEWORK = {
 
 MIDDLEWARE = [
 	'django.contrib.auth.middleware.AuthenticationMiddleware',	
-    'django.contrib.sessions.middleware.SessionMiddleware',
+	'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -72,7 +72,8 @@ MIDDLEWARE = [
 ]
 
 MIDDLEWARE_CLASSES = [
-    'django.contrib.sessions.middleware.SessionMiddleware',
+    'djnago.contrib.auth.middleware.AuthenticationMiddleware',
+	'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
