@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from . import models
-# Create your views here.
+from django.http import JsonResponse
 from django.http import HttpResponse
 
 # Create your tests here.
@@ -69,7 +69,7 @@ def add(request):
             return redirect('/')
         else:
           return redirect('/')
-    
+
 def note(request, id):
     n = models.Note.objects.get(slug=id)
     return render(request, 'notebook/note_page.html', {'note': n})
@@ -92,4 +92,10 @@ def note_delete(request, id):
     n = models.Note.objects.get(slug=id)
     n.delete()
     return redirect('/')
-    
+def app_login(request):
+    if request.method == "POST":
+        try:
+            user = models.User.objects.get(email=request.POST['email'], password=request.POST['password'])
+            return JsonResponse({'is_user': True, 'user_id':user.slug})
+        except Exception as e:
+            return JsonResponse({'is_user': True})
